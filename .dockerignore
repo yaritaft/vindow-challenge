@@ -1,0 +1,6 @@
+node_modules/
+up_dev.sh
+up_test.sh
+.travis.yml
+.gitignore
+.coveralls.yml

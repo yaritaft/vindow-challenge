@@ -1,0 +1,74 @@
+const Heros = require('./herosDao');
+
+exports.createHero = function (req, res, next) {
+    var hero = {
+        name: req.body.name,
+        description: req.body.description
+    };
+
+    Heros.create(hero, function(err, hero) {
+        if(err) {
+            res.json({
+                error : err
+            })
+        }
+        res.json({
+            message : "Hero created successfully"
+        })
+    })
+}
+
+exports.getHeros = async function(req, res, next) {
+    try{
+        const heros = await Heros.get({})
+        res.json(heros)
+        
+    }
+    catch (error){
+        return next(new Error("hola como estas"))
+    }
+}
+
+exports.getHero = function(req, res, next) {
+    Heros.get({name: req.params.name}, function(err, heros) {
+        if(err) {
+            res.json({
+                error: err
+            })
+        }
+        res.json({
+            heros: heros
+        })
+        console.log(heros)
+    })
+}
+
+exports.updateHero = function(req, res, next) {
+    var hero = {
+        name: req.body.name,
+        description: req.body.description
+    }
+    Heros.update({_id: req.params.id}, hero, function(err, hero) {
+        if(err) {
+            res.json({
+                error : err
+            })
+        }
+        res.json({
+            message : "Hero updated successfully"
+        })
+    })
+}
+
+exports.removeHero = function(req, res, next) {
+    Heros.delete({_id: req.params.id}, function(err, hero) {
+        if(err) {
+            res.json({
+                error : err
+            })
+        }
+        res.json({
+            message : "Hero deleted successfully"
+        })
+    })
+}

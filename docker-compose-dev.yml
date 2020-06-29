@@ -1,0 +1,24 @@
+version: '3.1'
+
+services:
+
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+        - "27017:27017"
+    volumes:
+      - ./mongo-volume:/data/db
+  api:
+    command: >
+      sh -c "node server.js"
+    depends_on:
+      - mongo
+    environment:
+    #   DATABASE_URL: mongodb://mongo:27017/test
+    #   DATABASE_URL: mongodb://mongo:27017/test REVIEW DEFAULT DB NAME MONGO
+      SECRET_KEY: mysecretkey
+      APP_ENV: testing
+      APP_PORT: 4002
+    ports:
+        - "4002:4002"
