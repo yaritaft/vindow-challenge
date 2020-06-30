@@ -4,8 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --verbose --detectOpenHandles",
     "start": "node server.js"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "setupFilesAfterEnv": ["./api/heros/__tests__/helpers/setup.js"],
+    "modulePathIgnorePatterns": ["helpers"]
+
   },
   "author": "",
   "license": "ISC",
@@ -15,7 +21,8 @@
     "chalk": "^4.1.0",
     "express": "^4.17.1",
     "mongoose": "^5.9.20",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "supertest": "^4.0.2"
   },
   "devDependencies": {
     "jest": "^26.1.0"

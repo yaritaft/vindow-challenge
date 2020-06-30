@@ -14,6 +14,7 @@ services:
         MONGO_INITDB_ROOT_PASSWORD: mypassword
         MONGO_INITDB_DATABASE: mern-db
   api:
+    # ADD WAIT FOR IT THEN
     command: >
       sh -c "npm start"
     depends_on:

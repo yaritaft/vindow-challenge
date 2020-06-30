@@ -1,27 +1,27 @@
 
-version: '3.3'
+version: '3.1'
 
 services:
-  db:
+  mongo:
+    image: mongo
     restart: always
-    image: postgres:11.4-alpine
     ports:
-      - "5432:5432"
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 123456789
-      POSTGRES_DB: mytestingdb
+        - "27017:27017"
     tmpfs:
-      - /var/lib/postgresql/data
+      - /data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: myuser
+      MONGO_INITDB_ROOT_PASSWORD: mypassword
+      MONGO_INITDB_DATABASE: mern-db-test
 
   api:
+    # ADD WAIT FOR IT THEN
     command: >
-      sh -c "pip install -r requirements-test.txt &&
-      wait-for-it --service db:5432 &&
-      coverage run manage.py test"
+      sh -c "sleep 7 && npm run test"
     depends_on:
-      - db
+      - mongo
     environment:
-      DATABASE_URL: postgresql+psycopg2://postgres:123456789@db/mytestingdb
-      SECRET_KEY: mysecretkey
+      DATABASE_URL: mongodb://mongo:27017/mern-db-test?authSource=admin
       APP_ENV: testing
+      APP_PORT: 4000
+      TEST_SUITE: mern-db-test?authSource=admin
