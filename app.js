@@ -34,9 +34,4 @@ app.use('/api',herosRoutes);
 app.get('/lala', (req, res) => {res.json({message:"hola"})})
 //call heros routing
 
-// intialise server
-// app.listen(properties.PORT, (req, res) => {
-//     console.log(`Server is running on ${properties.PORT} port.`);
-// })
-
 module.exports = app

@@ -1,74 +1,65 @@
 const Heros = require('./herosDao');
 
-exports.createHero = function (req, res, next) {
-    var hero = {
+exports.createHero = async function (req, res, next) {
+    const hero = {
         name: req.body.name,
         description: req.body.description
-    };
-
-    Heros.create(hero, function(err, hero) {
-        if(err) {
-            res.json({
-                error : err
-            })
-        }
-        res.json({
-            message : "Hero created successfully"
-        })
-    })
-}
-
-exports.getHeros = async function(req, res, next) {
+    }
     try{
-        const heros = await Heros.get({})
-        res.json(heros)
-        
+        await Heros.create(hero)
+        res.json({
+            message: "Hero created successfully"
+        })
     }
-    catch (error){
-        return next(new Error("hola como estas"))
+    catch(error){
+        return next(new Error("Internal error."))
     }
 }
 
-exports.getHero = function(req, res, next) {
-    Heros.get({name: req.params.name}, function(err, heros) {
-        if(err) {
-            res.json({
-                error: err
-            })
-        }
+exports.getHeros = async function (req, res, next) {
+    try {
+        const heros = await Heros.find({})
         res.json({
             heros: heros
         })
-        console.log(heros)
-    })
+    } catch (error) {
+        return next(new Error("Internal error."))
+    }
 }
 
-exports.updateHero = function(req, res, next) {
-    var hero = {
+
+exports.getHero = async function (req, res, next) {
+    try {
+        const hero = await Heros.find({_id: req.params.id})
+        res.json({"hero": hero})
+    }
+    catch (error){
+        return next(new Error("Non existent hero or error."))
+    }
+}
+
+exports.updateHero = async function (req, res, next) {
+    const hero = {
         name: req.body.name,
         description: req.body.description
     }
-    Heros.update({_id: req.params.id}, hero, function(err, hero) {
-        if(err) {
-            res.json({
-                error : err
-            })
-        }
-        res.json({
-            message : "Hero updated successfully"
-        })
-    })
+    try {
+        await Heros.update({_id: req.params.id}, hero)
+        res.json({message: "Hero updated successfully"})
+    }
+    catch (error){
+        return next(new Error("Update error."))
+    }
 }
 
-exports.removeHero = function(req, res, next) {
-    Heros.delete({_id: req.params.id}, function(err, hero) {
-        if(err) {
-            res.json({
-                error : err
-            })
-        }
+exports.removeHero = async function (req, res, next) {
+    try{
+        await Heros.delete({_id: req.params.id})
         res.json({
-            message : "Hero deleted successfully"
+            message: "Hero deleted successfully"
         })
-    })
+    }
+    catch(error){
+        return next(new Error("Deletion error."))
+    }
 }

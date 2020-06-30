@@ -7,12 +7,6 @@ herosSchema.statics = {
         const hero = new this(data);
         hero.save(db)
     },
-    get: function(query,db){
-        this.find(query, db)
-    },
-    getByName: function(query, db){
-        this.find(query, db)
-    },
     update: function(query, updateData, db){
         this.findOneAndUpdate(query, {$set: updateData}, {new: true}, db)
     },

@@ -4,3 +4,4 @@ up_test.sh
 .travis.yml
 .gitignore
 .coveralls.yml
+npm-debug.log
