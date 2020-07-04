@@ -1,6 +1,14 @@
-
 const mongoose = require('mongoose');
 
+const supertest = require("supertest");
+const app = require("../../../../app");
+class Helper {
+    constructor(model) {
+        this.apiServer = supertest(app);
+    }
+}
+
+module.exports = Helper;
 // Load models since we will not be instantiating our express server.
 require('../../../../api/heros/herosModels');
 
@@ -41,6 +49,6 @@ afterEach(function(done) {
   return done();
 });
 
-afterAll(done => {
+afterAll(async (done) => {
   return done();
 });

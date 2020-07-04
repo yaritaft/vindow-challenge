@@ -4,14 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --verbose --detectOpenHandles",
+    "test": "jest --verbose --forceExit",
     "start": "node server.js"
   },
   "jest": {
     "testEnvironment": "node",
     "setupFilesAfterEnv": ["./api/heros/__tests__/helpers/setup.js"],
-    "modulePathIgnorePatterns": ["helpers"]
-
+    "modulePathIgnorePatterns": ["helpers"],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
   },
   "author": "",
   "license": "ISC",
