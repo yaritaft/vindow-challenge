@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --verbose --detectOpenHandles --coverage",
+    "test:watch": "jest --watch",
     "start": "node ./src/server.js"
   },
   "jest": {

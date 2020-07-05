@@ -17,11 +17,11 @@ services:
   api:
     # ADD WAIT FOR IT THEN
     command: >
-      sh -c "sleep 7 && npm run test"
+      sh -c "sleep 7 && npm test"
     depends_on:
       - mongo
     environment:
-      DATABASE_URL: mongodb://mongo:27017/mern-db-test?authSource=admin
+      DATABASE_URL: mongodb://myuser:mypassword@mongo:27017/mern-db-test?authSource=admin
       APP_ENV: testing
       APP_PORT: 4000
       TEST_SUITE: mern-db-test?authSource=admin
