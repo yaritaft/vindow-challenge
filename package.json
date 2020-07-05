@@ -4,13 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --verbose --forceExit",
-    "start": "node server.js"
+    "test": "jest --verbose --detectOpenHandles --coverage",
+    "start": "node ./src/server.js"
   },
   "jest": {
     "testEnvironment": "node",
-    "setupFilesAfterEnv": ["./api/heros/__tests__/helpers/setup.js"],
-    "modulePathIgnorePatterns": ["helpers"],
+    "setupFilesAfterEnv": [
+      "./test/helpers/setup.js"
+    ],
+    "modulePathIgnorePatterns": [
+      "helpers"
+    ],
     "coveragePathIgnorePatterns": [
       "/node_modules/"
     ]
@@ -18,15 +22,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bluebird": "^3.7.2",
     "body-parser": "^1.19.0",
-    "chalk": "^4.1.0",
     "express": "^4.17.1",
     "mongoose": "^5.9.20",
     "morgan": "^1.10.0",
     "supertest": "^4.0.2"
   },
   "devDependencies": {
+    "chalk": "^4.1.0",
     "jest": "^26.1.0"
   }
 }

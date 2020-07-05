@@ -1,7 +1,7 @@
 const express = require('express')
-const Heros = require('./herosController');
-
 const router = express.Router()
+const Heros = require('../api/heros/herosController');
+
 router.post('/create', Heros.createHero);
 router.get('/get', Heros.getHeros);
 router.get('/get/:id', Heros.getHero);

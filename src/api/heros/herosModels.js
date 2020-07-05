@@ -1,6 +1,5 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
-mongoose.Promise = require('bluebird');
+const { Schema } = require("mongoose");
+
 const herosSchema = new Schema({
     name: {
         type: String,

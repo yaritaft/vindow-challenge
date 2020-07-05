@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const properties = require('./config/properties');
 const db = require('./config/database');
 //hero routes
-const herosRoutes = require('./api/heros/herosRoutes');
+const routes = require('./routes');
 const app = express();
 
 //configure bodyparser
@@ -30,7 +30,7 @@ app.use(function(req, res, next) {
  });
 
 // use express router
-app.use('/api',herosRoutes);
+app.use('/api',routes);
 app.get('/lala', (req, res) => {res.json({message:"hola"})})
 //call heros routing
 
