@@ -1,0 +1,24 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Debug Jest Tests",
+        "type": "node",
+        "request": "launch",
+        "runtimeArgs": [
+          "--inspect-brk",
+          "${workspaceRoot}/node_modules/.bin/jest",
+          "--runInBand",
+          "--detectOpenHandles",
+          "--forceExit"
+        ],
+        "console": "integratedTerminal",
+        "internalConsoleOptions": "neverOpen",
+        "port": 9229,
+        "env": {
+            "DATABASE_URL": "mongodb://myuser:mypassword@localhost:27017/mern-db-test?authSource=admin",
+            "APP_PORT": "4000"
+        }
+      }
+    ]
+  }
