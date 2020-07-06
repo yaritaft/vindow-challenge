@@ -1,6 +1,6 @@
 // test-setup.js 
 const mongoose = require('mongoose')
-const app = require('../../src/app'); // Link to your app file (not server)
+const app = require('../../src/app'); // Link to your app file
 const supertest = require('supertest');
 const request = supertest(app);
 

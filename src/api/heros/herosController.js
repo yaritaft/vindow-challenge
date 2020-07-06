@@ -44,7 +44,7 @@ exports.updateHero = async function (req, res, next) {
         description: req.body.description
     }
     try {
-        await Heros.update({_id: req.params.id}, hero)
+        await Heros.findOneAndUpdate({_id: req.params.id}, hero)
         res.json({message: "Hero updated successfully"})
     }
     catch (error){
@@ -54,7 +54,7 @@ exports.updateHero = async function (req, res, next) {
 
 exports.removeHero = async function (req, res, next) {
     try{
-        await Heros.delete({_id: req.params.id})
+        await Heros.findOneAndDelete({_id: req.params.id})
         res.json({
             message: "Hero deleted successfully"
         })
