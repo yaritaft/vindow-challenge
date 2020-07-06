@@ -24,4 +24,3 @@ services:
       DATABASE_URL: mongodb://myuser:mypassword@mongo:27017/mern-db-test?authSource=admin
       APP_ENV: testing
       APP_PORT: 4000
-      TEST_SUITE: mern-db-test?authSource=admin
