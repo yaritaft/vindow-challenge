@@ -1,7 +1,7 @@
 const { setupDB, request } = require("../helpers/setup");
 const urlPrefix = "/api/heros";
 
-setupDB()
+setupDB() //A db name should be sent in order to test with multiples dbs
 
 describe("Get Endpoints", () => {
   it("Gets the test endpoint", async (done) => {

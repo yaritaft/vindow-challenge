@@ -1,6 +1,6 @@
 // test-setup.js 
 const mongoose = require('mongoose')
-const app = require('../../src/app'); // Link to your server file
+const app = require('../../src/app'); // Link to your app file (not server)
 const supertest = require('supertest');
 const request = supertest(app);
 
@@ -34,11 +34,11 @@ async function dropAllCollections() {
     }
 }
 
-function setupDB() {
+function setupDB() { //A db name should be sent in order to test with multiples dbs
 
     
     // Connect to Mongoose
-    beforeAll(async () => {
+    beforeAll(async () => { // If multiples are being used uses mongoose connect
         // await mongoose.connect(database_uri, {
         //     useNewUrlParser: true
         // })
@@ -52,7 +52,6 @@ function setupDB() {
     // Disconnect Mongoose
     afterAll(async () => {
         await dropAllCollections()
-        await mongoose.disconnect()
         await mongoose.disconnect()
     })
 }
