@@ -10,4 +10,4 @@ script:
     - export DATABASE_URL=mongodb://localhost:27017/mern-db-test
     - export APP_PORT=4000
     - export TEST_SUITE=mern-db-test?authSource=admin
-    - jest --verbose --detectOpenHandles --coverage && coveralls < coverage/lcov.info
+    - jest --verbose --detectOpenHandles --coverage
