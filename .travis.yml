@@ -9,7 +9,7 @@ install:
 before_script:
     - mongo mern-db-test --eval 'db.createUser({user:"myuser",pwd:"mypassword",roles:["readWrite"]});'
 script:
-    - export DATABASE_URL=mongodb://myuser:mypassword@localhost:27017/mern-db-test?authSource=admin
+    - export DATABASE_URL=mongodb://myuser:mypassword@localhost/mern-db-test?authSource=admin
     - export APP_PORT=4000
     - export TEST_SUITE=mern-db-test?authSource=admin
     - jest --verbose --detectOpenHandles --coverage && coveralls < coverage/lcov.info
