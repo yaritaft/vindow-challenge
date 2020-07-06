@@ -7,7 +7,7 @@ services: mongodb
 install:
     - npm install
 before_script:
-    - mongo mern-db-test --eval 'db.createUser({user:"myuser",pwd:"mypassword",roles:["readWrite"]});'
+    - mongo mern-db-test --eval 'db.createUser({user:"myuser",pwd:"mypassword",roles:["admin"]});'
 script:
     - export DATABASE_URL=mongodb://myuser:mypassword@localhost/mern-db-test?authSource=admin
     - export APP_PORT=4000
